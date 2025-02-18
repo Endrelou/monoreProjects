@@ -1,0 +1,30 @@
+<div class="container mx-auto p-8">
+  <h1 class="text-4xl font-extrabold mb-2 text-center text-indigo-800">Pokemons</h1>
+  <div class="shadow-lg rounded-lg overflow-hidden">
+    <table class="min-w-full table-auto">
+      <thead>
+      <tr class="bg-indigo-600 text-white text-left">
+        <th class="p-4">id</th>
+        <th class="p-4">nom</th>
+        <th class="p-4">génération</th>
+      </tr>
+      </thead>
+      <tbody>
+        @for (pokemon of store.pokemons(); track pokemon.id) {
+          <tr>
+            <td class="p-4">
+              #{{ pokemon.id }}
+            </td>
+            <td class="p-4">
+              {{ pokemon.name }}
+            </td>
+            <td class="p-4">
+              {{ pokemon.generation }}
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+</div>
+
