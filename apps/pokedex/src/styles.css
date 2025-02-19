@@ -1,1 +1,6 @@
 @import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+.container {
+  scroll-behavior: smooth; /* Pour un défilement fluide */
+}

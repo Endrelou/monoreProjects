@@ -1,6 +1,7 @@
 export type Pokemon = {
   id: string
   name: string
+  image: string
   types: string[]
   stats: PokemonStats
   generation: number
@@ -9,6 +10,7 @@ export type Pokemon = {
 export type ApiPokemon = {
   id: string
   name: string
+  image: string
   apiTypes: string[]
   stats: PokemonStats
   apiGeneration: number

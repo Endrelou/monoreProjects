@@ -12,7 +12,7 @@ export class PokemonListService {
   getPokemons(): Observable<Pokemon[]> {
     return this.http
       .get<any>(
-        `https://pokebuildapi.fr/api/v1/pokemon/limit/10`)
+        `https://pokebuildapi.fr/api/v1/pokemon/limit/50`)
       .pipe(
         tap((data) => JSON.stringify(data)),
         map((data): Pokemon[] =>
@@ -20,6 +20,7 @@ export class PokemonListService {
              return {
                   id: pokemon.id,
                   name: pokemon.name,
+                  image: pokemon.image,
                   types: pokemon.apiTypes,
                   stats: pokemon.stats,
                   generation: pokemon.apiGeneration

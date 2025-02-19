@@ -1,30 +1,33 @@
-<div class="container mx-auto p-8">
-  <h1 class="text-4xl font-extrabold mb-2 text-center text-indigo-800">Pokemons</h1>
-  <div class="shadow-lg rounded-lg overflow-hidden">
-    <table class="min-w-full table-auto">
-      <thead>
-      <tr class="bg-indigo-600 text-white text-left">
-        <th class="p-4">id</th>
-        <th class="p-4">nom</th>
-        <th class="p-4">génération</th>
-      </tr>
-      </thead>
-      <tbody>
-        @for (pokemon of store.pokemons(); track pokemon.id) {
-          <tr>
-            <td class="p-4">
-              #{{ pokemon.id }}
-            </td>
-            <td class="p-4">
-              {{ pokemon.name }}
-            </td>
-            <td class="p-4">
-              {{ pokemon.generation }}
-            </td>
-          </tr>
-        }
-      </tbody>
-    </table>
-  </div>
+<div class="container mx-auto p-4 h-screen overflow-y-scroll snap-y snap-mandatory list-pokemon">
+  @for (pokemon of store.pokemons(); track pokemon.id; let i = $index) {
+    <div class="flex items-center justify-center snap-center">
+      <div
+        [ngClass]="{
+          'max-w-md scale-100': isCurrentPokemon(i),
+          'max-w-sm scale-75 opacity-75': !isCurrentPokemon(i)
+        }"
+        class="mx-auto rounded overflow-hidden shadow-lg bg-white border-2 border-gray-200 hover:shadow-xl transition-all duration-300"
+      >
+        <div class="flex items-center p-4">
+          <div class="w-16 h-16 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
+            <img [src]="pokemon.image" alt="{{ pokemon.name }}" class="w-12 h-12 object-cover">
+          </div>
+          <div class="ml-4">
+            <div class="text-gray-900 font-bold text-xl">{{ pokemon.name }}</div>
+            <p class="text-gray-700 text-base">ID: {{ pokemon.id }}</p>
+            <p class="text-gray-700 text-base">Génération: {{ pokemon.generation }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
 </div>
 
+<div class="fixed bottom-4 right-4 flex gap-2">
+  <button (click)="scrollToPrevious()" class="bg-blue-500 text-white p-2 rounded">
+    Précédent
+  </button>
+  <button (click)="scrollToNext()" class="bg-blue-500 text-white p-2 rounded">
+    Suivant
+  </button>
+</div>
